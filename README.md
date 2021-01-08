@@ -1,5 +1,7 @@
 # ChatBot - Stone Dev (API) 
 
+![]()
+
 ------
 
 ## Introdução
