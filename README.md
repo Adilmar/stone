@@ -1,6 +1,7 @@
 # ChatBot - Stone Dev (API) 
 
-<img width="15%" alt="stone" src="https://raw.githubusercontent.com/Adilmar/stone/main/images/logo.png">
+<center><img width="15%" alt="stone" src="https://raw.githubusercontent.com/Adilmar/stone/main/images/logo.png">
+</center>
 
 ------
 
