@@ -119,7 +119,11 @@ Para realizar o deploy da API na AWS basta editar o arquivo [Terraform](https://
 
 Após isso execute o comendo: `terraform plan` e em seguida `terraform apply`.
 
+**Instalando no Windows** 
 
+Sentando variáveis de ambiente no Windows
+
+`set PATH=%PATH%;C:\terraform`
 
 ## Dúvidas e sugestões 
 
