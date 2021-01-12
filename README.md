@@ -109,6 +109,16 @@ Essa função tem como funcionalidade deletar um funcionário pelo seu `id`.
 }
 ```
 
+------
+
+## Terraform (AWS)
+
+Para realizar o deploy da API na AWS basta editar o arquivo [Terraform](https://github.com/Adilmar/stone/blob/main/terraform/stone_terra.tf) com as suas credenciais:
+
+`access_key`, `secret_key`
+
+Após isso execute o comendo: `terraform plan` e em seguida `terraform apply`.
+
 
 
 ## Dúvidas e sugestões 
