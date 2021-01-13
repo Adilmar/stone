@@ -13,9 +13,9 @@ Esse documento tem como objetivo descrever o funcionamento da API para o chatbot
 
 **Telegram nome do bot:** [stonedev_bot](https://web.telegram.org/#/im?p=@stonedev_bot) 
 
-Link geral da API: `https://ezveld0pn1.execute-api.us-east-2.amazonaws.com/dev/`
+**Link geral da API**: `https://ezveld0pn1.execute-api.us-east-2.amazonaws.com/dev/`
 
-
+**Link da coleção Postman**: https://www.getpostman.com/collections/ddf08037c986693356c1
 
 ###  Função - REGISTER  e UPDATE
 
