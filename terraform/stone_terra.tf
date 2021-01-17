@@ -151,7 +151,7 @@ resource "aws_api_gateway_integration" "lambdaInt" {
    http_method = aws_api_gateway_method.Method.http_method
 
    integration_http_method = "POST"
-   type                    = "AWS_PROXY"
+   type                    = "AWS"
    uri                     = aws_lambda_function.stone2.invoke_arn
    
 }
@@ -176,7 +176,7 @@ resource "aws_api_gateway_integration" "lambdaInt2" {
    http_method = aws_api_gateway_method.Method2.http_method
 
    integration_http_method = "POST"
-   type                    = "AWS_PROXY"
+   type                    = "AWS"
    uri                     = aws_lambda_function.stone_register2.invoke_arn
    
 }
@@ -238,6 +238,57 @@ resource "aws_api_gateway_deployment" "apideploy" {
    rest_api_id = aws_api_gateway_rest_api.apiLambda.id
    stage_name  = "Prod"
 }
+
+resource "aws_api_gateway_method_response" "response_200" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource.id
+  http_method = aws_api_gateway_method.Method.http_method
+  status_code = "200"
+
+  depends_on = [
+    aws_api_gateway_integration.lambdaInt
+  ]
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+
+}
+
+resource "aws_api_gateway_integration_response" "MyDemoIntegrationResponse" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource.id
+  http_method = aws_api_gateway_method.Method.http_method
+  status_code = aws_api_gateway_method_response.response_200.status_code
+}
+
+
+resource "aws_api_gateway_method_response" "response_200_2" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource2.id
+  http_method = aws_api_gateway_method.Method2.http_method
+  status_code = "200"
+
+  depends_on = [
+    aws_api_gateway_integration.lambdaInt2
+  ]
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+
+}
+
+resource "aws_api_gateway_integration_response" "MyDemoIntegrationResponse_2" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource2.id
+  http_method = aws_api_gateway_method.Method2.http_method
+  status_code = aws_api_gateway_method_response.response_200_2.status_code
+}
+
+
 
 
 resource "aws_lambda_permission" "apigw" {
