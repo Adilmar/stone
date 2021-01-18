@@ -127,6 +127,7 @@ resource "aws_lambda_function" "stone2" {
 
 resource "aws_api_gateway_rest_api" "apiLambda" {
   name        = "myAPI"
+  description = "Api de testes Stone"
 
 }
 
@@ -201,7 +202,7 @@ resource "aws_api_gateway_integration" "lambdaInt3" {
    http_method = aws_api_gateway_method.Method3.http_method
 
    integration_http_method = "POST"
-   type                    = "AWS_PROXY"
+   type                    = "AWS"
    uri                     = aws_lambda_function.stone_delete2.invoke_arn
    
 }
@@ -226,7 +227,7 @@ resource "aws_api_gateway_integration" "lambdaInt4" {
    http_method = aws_api_gateway_method.Method4.http_method
 
    integration_http_method = "POST"
-   type                    = "AWS_PROXY"
+   type                    = "AWS"
    uri                     = aws_lambda_function.stone_search2.invoke_arn
    
 }
@@ -288,6 +289,55 @@ resource "aws_api_gateway_integration_response" "MyDemoIntegrationResponse_2" {
   status_code = aws_api_gateway_method_response.response_200_2.status_code
 }
 
+
+resource "aws_api_gateway_method_response" "response_200_3" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource3.id
+  http_method = aws_api_gateway_method.Method3.http_method
+  status_code = "200"
+
+  depends_on = [
+    aws_api_gateway_integration.lambdaInt3
+  ]
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+
+}
+
+resource "aws_api_gateway_integration_response" "MyDemoIntegrationResponse_3" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource3.id
+  http_method = aws_api_gateway_method.Method3.http_method
+  status_code = aws_api_gateway_method_response.response_200_3.status_code
+}
+
+
+resource "aws_api_gateway_method_response" "response_200_4" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource4.id
+  http_method = aws_api_gateway_method.Method4.http_method
+  status_code = "200"
+
+  depends_on = [
+    aws_api_gateway_integration.lambdaInt4
+  ]
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+
+}
+
+resource "aws_api_gateway_integration_response" "MyDemoIntegrationResponse_4" {
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.Resource4.id
+  http_method = aws_api_gateway_method.Method4.http_method
+  status_code = aws_api_gateway_method_response.response_200_4.status_code
+}
 
 
 
